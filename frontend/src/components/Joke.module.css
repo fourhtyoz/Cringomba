@@ -1,0 +1,25 @@
+.container {
+    margin: 100px;
+    margin-inline: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container p {
+    font-size: 30px;
+    word-break: normal;
+    text-justify: inter-word;
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.4;
+}
+
+.punchLine {
+    font-weight: bold;
+}
+
+.fakeLaugh {
+    margin-top: 20px;
+}
