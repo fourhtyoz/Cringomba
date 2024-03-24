@@ -15,10 +15,10 @@ export default function Joke() {
             const res: any = await axios.get('http://localhost:8000/')
             if (res.status === 200) {
                 setJokeText(res.data.randomJoke[0].text)
-              }
-          } catch (err) {
+            }
+        } catch (err) {
             console.log(err)
-          }
+        }
     }
 
     return (
