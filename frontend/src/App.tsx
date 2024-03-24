@@ -5,7 +5,18 @@ import s from './App.module.css';
 import Joke from './components/Joke';
 
 export default function App() {
-  
+  // TODO:
+  // more jokes
+  // like/dislike
+  // login/logout
+  // profile
+  // premium jokes
+  // express admin
+  // translations
+  // ai generated punchline
+  // redux joke
+  // dockerize
+  // fullstack deploy
 
   return (
     <div className={s.wrapper}>
