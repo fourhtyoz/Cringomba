@@ -24,3 +24,11 @@
     border: 1px solid rgba(0, 0, 128)
 }
 
+@media (max-width: 900px) {
+    .container {
+        margin-bottom: 20px;
+    }
+    .button {
+        font-size: 15px;
+    }
+}

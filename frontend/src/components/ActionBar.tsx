@@ -23,7 +23,7 @@ export default function ActionBar({text}:{text:any}) {
     }
 
     return (
-        <div className={s.buttonsContainer}>
+        <div className={s.container}>
             <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
             <div onClick={handleCopy}><ContentCopyIcon fontSize='inherit' /></div>
             <div onClick={handleLike}><ThumbUpIcon fontSize='inherit' /></div>

@@ -1,19 +1,26 @@
-.buttonsContainer {
+.container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     font-size: 80px;
     margin-top: 100px
 }
 
-.buttonsContainer svg {
+.container svg {
     cursor: pointer;
     color: rgba(0, 0, 128, .5);
     transition: .3s linear;
 }
 
-.buttonsContainer svg:hover {
+.container svg:hover {
     cursor: pointer;
     color: rgba(0, 0, 128);
+}
+
+@media (max-width: 900px) {
+    .container {
+        font-size: 30px;
+        margin-top: 20px;
+    }
 }

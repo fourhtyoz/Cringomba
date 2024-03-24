@@ -14,3 +14,9 @@
 .subtitle {
     color: grey;
 }
+
+@media (max-width: 900px) {
+    .title {
+        font-size: 50px;
+    }
+}
