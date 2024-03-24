@@ -7,7 +7,7 @@ export const GOOD_SYNONYMS = [
     'Тема', 
     'Ахах', 
     'Забавно', 
-    'Лол)', 
+    'Лол', 
     'Ржач']
 
 export const BAD_SYNONYMS = [

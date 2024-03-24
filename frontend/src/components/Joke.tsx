@@ -23,7 +23,16 @@ export default function Joke() {
     return (
         <>
         <div className={s.container}>
-            {jokeText && <><p>{jokeText}</p><p className={s.fakeLaugh}>{addFakeLaugh()}</p></>}
+            {jokeText 
+            ? 
+                <>
+                    <p>{jokeText}</p>
+                    <p className={s.fakeLaugh}>{addFakeLaugh()}</p>
+                </> 
+            : 
+                <p>Нажми на кнопку, чтобы получить ржачный анекдот!</p>
+            }
+
             {jokeText && <ActionBar text={jokeText} />}
         </div>
         <JokeButton onClick={handleClick}/>

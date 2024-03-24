@@ -1,0 +1,19 @@
+.container {
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px
+}
+
+.container a {
+    color: lightblue;
+    font-weight: bold;
+    transition: .3s linear;
+    text-decoration: none;
+}
+
+.container a:hover {
+    color: white;
+}
