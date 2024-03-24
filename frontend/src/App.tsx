@@ -6,6 +6,7 @@ import Joke from './components/Joke';
 
 export default function App() {
   // TODO:
+  // mobile
   // more jokes
   // like/dislike
   // login/logout
