@@ -2,9 +2,10 @@
     background: black;
     color: white;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    padding: 50px
+    flex-direction: column;
+    padding: 50px;
 }
 
 .container a {
