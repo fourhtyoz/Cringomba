@@ -6,7 +6,7 @@ export default function JokeButton({onClick}:{onClick:any}) {
     return (
         <div className={s.container}>
         <button onClick={onClick} className={s.button}>
-            Generate a new joke!
+            Сгенерировать новую шутку!
         </button>
         </div>
     )
