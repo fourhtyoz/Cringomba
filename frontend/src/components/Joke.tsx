@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import s from './Joke.module.css';
 import JokeButton from './JokeButton';
-import axios from 'axios';
 import addFakeLaugh from '../utils/addFakeLaugh';
-
 import ActionBar from './ActionBar';
+import { httpServer } from '../api/httpServer';
 
 
 export default function Joke() {
@@ -12,7 +11,7 @@ export default function Joke() {
 
     const handleClick = async () => {
         try {
-            const res: any = await axios.get('http://localhost:8000/')
+            const res: any = await httpServer.get('/')
             if (res.status === 200) {
                 setJokeText(res.data.randomJoke[0].text)
             }
