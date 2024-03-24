@@ -1,4 +1,5 @@
-export default function addFakeLaugh() {
-    return 'Ахахаха угарище 😂😂😂😂👍👍👍'
+import { FUNNY_JOKE } from "../constants/synonyms"
 
+export default function addFakeLaugh() {
+    return FUNNY_JOKE[Math.floor(Math.random() * FUNNY_JOKE.length)]
 }
