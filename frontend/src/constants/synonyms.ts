@@ -1,4 +1,4 @@
-export const GOOD_SYNONYMS = [
+export const GOOD_SYNONYMS: string[] = [
     'Круто', 
     'Классно', 
     'Супер', 
@@ -10,7 +10,7 @@ export const GOOD_SYNONYMS = [
     'Лол', 
     'Ржач']
 
-export const BAD_SYNONYMS = [
+export const BAD_SYNONYMS: string[] = [
     'Говно', 
     'Треш', 
     'Херня', 
@@ -23,7 +23,7 @@ export const BAD_SYNONYMS = [
     'Автор, убейся'
 ]
 
-export const FUNNY_JOKE = [
+export const FUNNY_JOKE: string[] = [
     'Ахахаха угарище 😂😂👍👍',
     'АХАХАХ вообще ржомба! 😂😂👍',
     'Автор жжет! 😂👍',
