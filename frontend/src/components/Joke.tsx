@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './Joke.module.css';
 import JokeButton from './JokeButton';
 import addFakeLaugh from '../utils/addFakeLaugh';
@@ -14,11 +14,27 @@ export default function Joke() {
             const res: any = await httpServer.get('/')
             if (res.status === 200) {
                 setJokeText(res.data.randomJoke[0].text)
+                const hash = localStorage.getItem('cringombaGeneratedJoke')
+                if (hash) {
+                    let newValue = String(parseInt(hash) + 1)
+                    localStorage.setItem('cringombaGeneratedJoke', newValue)
+                } else {
+                    localStorage.setItem('cringombaGeneratedJoke', '1')
+                }
             }
         } catch (err) {
             console.log(err)
         }
     }
+
+    // TODO: subscribe to the website modal
+    useEffect(() => {
+        let hash: string | null = localStorage.getItem('cringombaGeneratedJoke')
+        console.log(hash)
+        if (hash && parseInt(hash) >= 3) {
+            localStorage.removeItem('cringombaGeneratedJoke')
+        }
+        }, [jokeText])
 
     return (
         <>
