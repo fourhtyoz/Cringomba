@@ -6,7 +6,7 @@ import ActionBar from './ActionBar';
 import { httpServer } from '../api/httpServer';
 
 
-export default function Joke() {
+export default function Joke({darkMode}:{darkMode:boolean}) {
     const [jokeText, setJokeText] = useState('')
 
     const handleClick = async () => {
@@ -51,7 +51,7 @@ export default function Joke() {
 
                 {jokeText && <ActionBar text={jokeText} />}
             </div>
-            <JokeButton onClick={handleClick}/>
+            <JokeButton darkMode={darkMode} onClick={handleClick}/>
         </>
     )
 }
