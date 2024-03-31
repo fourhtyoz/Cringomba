@@ -33,7 +33,6 @@ export default function Joke() {
     // TODO: subscribe to the website modal
     useEffect(() => {
         let hash: string | null = localStorage.getItem('cringombaGeneratedJoke')
-        console.log(hash)
         if (hash && parseInt(hash) >= 3) {
             localStorage.removeItem('cringombaGeneratedJoke')
         }

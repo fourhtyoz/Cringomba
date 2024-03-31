@@ -25,7 +25,6 @@ export default function ActionBar({text}:{text:any}) {
     }
 
     const mode = useSelector(selectMode)
-    console.log(mode)
 
     if (mode) {
         return (
