@@ -16,6 +16,10 @@
     color: grey;
 }
 
+.subtitleDark {
+    color: orange;
+}
+
 @media (max-width: 900px) {
     .title {
         font-size: 50px;

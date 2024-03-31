@@ -6,6 +6,8 @@ import { GOOD_SYNONYMS, BAD_SYNONYMS } from '../constants/synonyms';
 //@ts-ignore
 import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
+import { useSelector } from 'react-redux';
+import { selectMode } from '../stores/selectors/selectors';
 
 export default function ActionBar({text}:{text:any}) {
 
@@ -22,6 +24,18 @@ export default function ActionBar({text}:{text:any}) {
         alertify.error(BAD_SYNONYMS[Math.floor(Math.random() * BAD_SYNONYMS.length)]);
     }
 
+    const mode = useSelector(selectMode)
+    console.log(mode)
+
+    if (mode) {
+        return (
+            <div className={s.containerDark}>
+            <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
+            <div onClick={handleCopy}><ContentCopyIcon fontSize='inherit' /></div>
+            <div onClick={handleLike}><ThumbUpIcon fontSize='inherit' /></div>
+        </div>
+        )
+    }
     return (
         <div className={s.container}>
             <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
