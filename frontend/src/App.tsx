@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import s from './App.module.css';
 import Joke from './components/Joke';
-import { ThemeProvider, createTheme, Switch, CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { Provider } from 'react-redux';
+import store from './stores/store'
+import { useSelector } from 'react-redux';
+import { selectMode } from './stores/selectors/selectors';
 
 export default function App() {
   // TODO:
@@ -16,19 +20,14 @@ export default function App() {
   // express admin
   // translations
   // ai generated punchline
-  // redux joke
+  // redux
   // dockerize
   // fullstack deploy
 
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
-
-  const toggleDarkTheme = () => {
-    setToggleDarkMode(!toggleDarkMode);
-  };
-
+  const mode = useSelector(selectMode)
   const darkTheme = createTheme({
     palette: {
-      mode: toggleDarkMode ? 'dark' : 'light',
+      mode: mode ? 'dark' : 'light',
       primary: {
         main: '#FFA500',
       },
@@ -42,12 +41,11 @@ export default function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-    <div className={s.wrapper}>
-    <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
-      <Header />
-      <Joke darkMode={toggleDarkMode} />
-      <Footer />
-    </div>
+      <div className={s.wrapper}>
+        <Header />
+        <Joke />
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 };

@@ -4,10 +4,13 @@ import JokeButton from './JokeButton';
 import addFakeLaugh from '../utils/addFakeLaugh';
 import ActionBar from './ActionBar';
 import { httpServer } from '../api/httpServer';
+import { useSelector } from 'react-redux';
+import { selectMode } from '../stores/selectors/selectors';
 
 
-export default function Joke({darkMode}:{darkMode:boolean}) {
+export default function Joke() {
     const [jokeText, setJokeText] = useState('')
+    const mode = useSelector(selectMode)
 
     const handleClick = async () => {
         try {
@@ -51,7 +54,7 @@ export default function Joke({darkMode}:{darkMode:boolean}) {
 
                 {jokeText && <ActionBar text={jokeText} />}
             </div>
-            <JokeButton darkMode={darkMode} onClick={handleClick}/>
+            <JokeButton darkMode={mode} onClick={handleClick}/>
         </>
     )
 }
