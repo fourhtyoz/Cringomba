@@ -9,14 +9,15 @@ import { selectMode } from "../stores/selectors/selectors"
 export default function Header() {
     const accentColor = '#' + generateRandomColor()
     const handleSwitch = () => {
-        store.dispatch({type: ''})
+        store.dispatch({type: 'changeMode'})
     }
     const mode = useSelector(selectMode)
+    const darkMode = mode === 'dark'
     return (
         <div className={s.container}>
-            <Switch onChange={handleSwitch}/>
+            <Switch checked={darkMode} onChange={handleSwitch}/>
             <h1 className={s.title}>Cringomba<span style={{ color: `${accentColor}` }}>!</span></h1>
-            {!mode 
+            {!darkMode
             ? 
             <span className={s.subtitle}>Your source of hilarity</span>
             : 
