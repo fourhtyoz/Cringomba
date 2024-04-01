@@ -29,7 +29,6 @@ exports.login = asyncHandler( async (req, res) => {
     if (!user) {
         return res.status(500).send({message: 'User not found'})
     } else {
-        console.log(req.body.password, user.password)
         const passwordIsCorrect = bcrypt.compare(req.body.password, user.password)
         if (!passwordIsCorrect) {
             return res.status(404).send({message: 'Invalid password', accessToken: null})

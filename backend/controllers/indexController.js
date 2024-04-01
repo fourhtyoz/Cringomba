@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler')
 const Joke = require('../models/joke');
 
 exports.index = asyncHandler(async (req, res, next) => {
+    console.log(req.header('Authorization'))
     try {
         const randomJoke = await Joke.aggregate([{ $sample: { size: 1}}])
 
