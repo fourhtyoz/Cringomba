@@ -9,7 +9,7 @@ import { selectMode } from "../stores/selectors/selectors"
 export default function Header() {
     const accentColor = '#' + generateRandomColor()
     const handleSwitch = () => {
-        store.dispatch({type: 'darkmode'})
+        store.dispatch({type: ''})
     }
     const mode = useSelector(selectMode)
     return (

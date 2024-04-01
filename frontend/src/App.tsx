@@ -4,8 +4,6 @@ import Footer from './components/Footer';
 import s from './App.module.css';
 import Joke from './components/Joke';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import { Provider } from 'react-redux';
-import store from './stores/store'
 import { useSelector } from 'react-redux';
 import { selectMode } from './stores/selectors/selectors';
 

@@ -7,8 +7,5 @@ export default configureStore({
 })
 
 function darkModeReducer(state = false, action: any) {
-    if (action.type === 'darkmode') {
-        return !state
-    }
-    return state
+    return !state
 } 
