@@ -11,6 +11,8 @@ import { selectMode } from '../stores/selectors/selectors';
 export default function Joke() {
     const [jokeText, setJokeText] = useState('')
     const mode = useSelector(selectMode)
+    const darkMode = mode === 'dark'
+
 
     const handleClick = async () => {
         try {
@@ -53,7 +55,7 @@ export default function Joke() {
 
                 {jokeText && <ActionBar text={jokeText} />}
             </div>
-            <JokeButton darkMode={mode} onClick={handleClick}/>
+            <JokeButton darkMode={darkMode} onClick={handleClick}/>
         </>
     )
 }
