@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const verifyToken = require('./middlewares/authJWT');
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -27,7 +28,7 @@ const app = express()
 app.use(cors())
 app.use(morgan('common'))
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // URLs
 app.use('/', indexRouter)
