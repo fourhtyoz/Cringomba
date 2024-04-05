@@ -6,6 +6,7 @@ import ActionBar from './ActionBar';
 import { httpServer } from '../api/httpServer';
 import { useSelector } from 'react-redux';
 import { selectMode } from '../stores/selectors/selectors';
+import axios from 'axios';
 
 
 export default function Joke() {
@@ -16,7 +17,7 @@ export default function Joke() {
 
     const handleClick = async () => {
         try {
-            const res: any = await httpServer.get('/')
+            const res: any = await axios.get('http://localhost:8000/')
             if (res.status === 200) {
                 setJokeText(res.data.randomJoke[0].text)
                 const hash = localStorage.getItem('cringombaGeneratedJoke')

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import { selectMode } from "../stores/selectors/selectors"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { httpServer } from "../api/httpServer"
+import axios from "axios"
 
 type Inputs = {
     firstName: string
@@ -30,27 +31,35 @@ export default function Header() {
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         try {
             const res = await httpServer.post('/register', data)
-            console.log(res)
             if (res.status === 200) {
                 setOpen(false)
             }
-        } catch (err) {
-            console.log(err)
+        } catch (e) {
+            console.error(e)
         }
     }
 
     const onSubmitLogin = async (data) => {
-        console.log(data)
         try {
-            console.log(1)
             const res = await httpServer.post('/login', data)
-            console.log(res)
             if (res.status === 200) {
-                setOpen(false)
+                const token = res.data.token
+                if (token) {
+                    localStorage.setItem('access_token', token)
+                }
+                setOpenLogin(false)
             }
-        } catch (err) {
-            console.log(2)
-            console.log(err)
+        } catch (e) {
+            console.error(e)
+        } 
+    }
+
+    const onSubmitTest = async () => {
+        try {
+            const res = await httpServer.get('/test')
+            console.log(res)
+        } catch (e) {
+            console.error(e)
         }
     }
 
@@ -109,6 +118,7 @@ export default function Header() {
             </Modal> */}
 
             <button onClick={handleOpenLogin}>Вход</button>
+            <button onClick={onSubmitTest}>LOL</button>
             <Modal open={openLogin} onClose={handleCloseLogin}>
                 <Box className={s.box}>
                 <form className={s.form} onSubmit={handleSubmit(onSubmitLogin)}>

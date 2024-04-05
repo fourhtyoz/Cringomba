@@ -2,6 +2,7 @@
 const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+require("dotenv").config(); // Load the .env file
 
 // Models
 const User = require('../models/user');
@@ -24,30 +25,32 @@ exports.register = asyncHandler( async (req, res) => {
 })
 
 exports.login = asyncHandler( async (req, res) => {
-    const user = await User.findOne({email: req.body.email}).exec()
-    console.log(user)
-    if (!user) {
-        return res.status(500).send({message: 'User not found'})
-    } else {
-        const passwordIsCorrect = bcrypt.compare(req.body.password, user.password)
-        if (!passwordIsCorrect) {
-            return res.status(404).send({message: 'Invalid password', accessToken: null})
+    try {
+        //Extracting email and password from the req.body object
+        const { email, password } = req.body;
+        const JWT_SECRET = process.env.JWT_SECRET;
+    
+        //Checking if user exists in database
+        let user = await User.findOne({ email });
+    
+        if (!user) {
+          return res.status(401).json({ message: "Invalid email Credentials" });
         }
-        const token = jwt.sign({
-            id: user.id
-        }, process.env.API_SECRET, {
-            expiresIn: 86400
-        })
-
-        res.status(200).send({
-            user: {
-                id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
-            },
-            message: 'Logged in successfully',
-            accessToken: token
-        })
-    }
+    
+        //Comparing provided password with password retrived from database
+        bcrypt.compare(password, user.password, (err, result) => {
+          if (result) {
+            const token = jwt.sign({ email }, JWT_SECRET);
+            return res
+              .status(200)
+              .json({ message: "User Logged in Sucessfully", token });
+          }
+    
+          console.log(err);
+          return res.status(401).json({ message: "Invalid Credentials" });
+        });
+      } catch (error) {
+        res.status(401).send(err.message);
+      }
+    
 })

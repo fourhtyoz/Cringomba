@@ -2,8 +2,9 @@ const express = require('express');
 const morgan = require('morgan')
 const cors = require('cors')
 const mongoose = require('mongoose')
-const verifyToken = require('./middlewares/authJWT');
+const requireAuth = require('./middlewares/requireAuth');
 const dotenv = require('dotenv')
+const createError = require('http-errors');
 dotenv.config()
 
 // DB
@@ -35,7 +36,7 @@ app.use('/', indexRouter)
 
 // 404
 app.use((req, res, next) => {
-    next(createError(404));
+    createError(404);
   });
 
 const port = process.env.PORT || 8000
