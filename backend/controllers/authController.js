@@ -18,7 +18,17 @@ exports.register = asyncHandler( async (req, res) => {
 
     try {
         user.save()
-        res.status(200).send({message: 'User has been created'})
+        res.status(200).send({
+          message: 'User has been created', 
+          user: {
+            id: user._id,
+            firstName: user.firstName, 
+            lastName: user.lastName, 
+            email: user.email, 
+            role: user.role,
+            created: user.created
+          }
+        })
     } catch (err) {
         return res.status(500).send({message: err})
     }
@@ -50,7 +60,6 @@ exports.login = asyncHandler( async (req, res) => {
                   lastName: user.lastName, 
                   email: user.email, 
                   role: user.role, 
-                  created:user.created
                 }, 
                 token: token });
           }

@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectMode, selectUser } from "../stores/selectors/selectors";
 
 export default function Navbar() {
-    const [open, setOpen] = useState(false);
+    const [registrationOpen, setRegistrationOpen] = useState(false)
+    const [loggingInOpen, setLoggingInOpen] = useState(false);
     const {
         register,
         handleSubmit,
@@ -23,7 +24,8 @@ export default function Navbar() {
         try {
             const res = await httpServer.post('/register', data)
             if (res.status === 200) {
-                setOpen(false)
+                store.dispatch({type: 'user/login', payload: res.data.user})
+                setRegistrationOpen(false)
             }
         } catch (e) {
             console.error(e)
@@ -39,7 +41,7 @@ export default function Navbar() {
                     localStorage.setItem('access_token', token)
                 }
                 store.dispatch({type: 'user/login', payload: res.data.user})
-                setOpen(false)
+                setLoggingInOpen(false)
             }
             console.log(res)
         } catch (e) {
@@ -47,8 +49,13 @@ export default function Navbar() {
         } 
     }
 
+    const handleRegistrationClick = () => {
+        setLoggingInOpen(false)
+        setRegistrationOpen(true)
+    }
+
     const handleLogin = () => {
-        setOpen(true)
+        setLoggingInOpen(true)
     }
 
     const handleLogout = () => {
@@ -65,12 +72,14 @@ export default function Navbar() {
     const darkMode = mode === 'dark'
     return (
         <div className={s.wrapper}>
-        {isLoggedIn ? user.email : <span>Guest</span>}
+        {isLoggedIn ? `Добро пожаловать, ${user.firstName} ${user.lastName}` : <span>Привет, гость</span>}
         <Switch className={s.switcher} checked={darkMode} onChange={handleSwitch}/>
         {!isLoggedIn && <button onClick={handleLogin}>Вход</button>}
         {isLoggedIn && <button onClick={handleLogout}>Выход</button>}
-        <Modal open={open} onClose={() => setOpen(false)}>
+
+        <Modal open={loggingInOpen} onClose={() => setLoggingInOpen(false)}>
             <Box className={s.box}>
+            <h1>Авторизация:</h1>
             <form className={s.form} onSubmit={handleSubmit(onSubmitLogin)}>
                 <label>Email:</label>
                 <input {...register("email", { required: true })} />
@@ -79,11 +88,40 @@ export default function Navbar() {
                 <label>Пароль:</label>
                 <input type="password" {...register("password", { required: true })} />
                 {errors.password && <span>This field is required</span>}
-                
                 <input value='Войти' type="submit" />
+            </form>
+            <span onClick={handleRegistrationClick}>Зарегистрироваться</span>
+            </Box>
+        </Modal>
+
+        <Modal open={registrationOpen} onClose={() => setRegistrationOpen(false)}>
+            <Box className={s.box}>
+            <h1>Регистрация:</h1>
+            <form className={s.form} onSubmit={handleSubmit(onSubmitSignUp)}>
+                <label>Имя:</label>
+                <input {...register("firstName", { required: true })} />
+                {errors.firstName && <span>This field is required</span>}
+
+                <label>Фамилия:</label>
+                <input {...register("lastName", { required: true })} />
+                {errors.lastName && <span>This field is required</span>}
+
+                <label>Email:</label>
+                <input {...register("email", { required: true })} />
+                {errors.email && <span>This field is required</span>}
+                
+                <label>Пароль:</label>
+                <input type="password" {...register("password", { required: true })} />
+                {errors.password && <span>This field is required</span>}
+
+                <label>Повторите пароль:</label>
+                <input type="password" {...register("password", { required: true })} />
+                {errors.password && <span>This field is required</span>}
+                <input value='Создать аккаунт' type="submit" />
             </form>
             </Box>
         </Modal>
+
         </div>
     )
 }
