@@ -13,11 +13,13 @@ export default function Navbar() {
     const [registrationOpen, setRegistrationOpen] = useState(false)
     const [loggingInOpen, setLoggingInOpen] = useState(false);
     const {
-        register,
-        handleSubmit,
-        formState: { 
-            errors 
-        },
+        register: login,
+        handleSubmit: handleSubmitLogin,
+      } = useForm()
+
+    const {
+        register: signup,
+        handleSubmit: handleSubmitSignUp,
       } = useForm()
 
 
@@ -81,14 +83,14 @@ export default function Navbar() {
         <Modal open={loggingInOpen} onClose={() => setLoggingInOpen(false)}>
             <div className={cn(s.box, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
                 <h1>Авторизация:</h1>
-                <form className={s.form} onSubmit={handleSubmit(onSubmitLogin)}>
+                <form className={s.form} onSubmit={handleSubmitLogin(onSubmitLogin)}>
                     <label>Email:</label>
-                    <input {...register("email", { required: true })} />
-                    {errors.email && <span>This field is required</span>}
+                    <input {...login("email", { required: true })} />
+                    {/* {errors.email && <span>This field is required</span>} */}
                     
                     <label>Пароль:</label>
-                    <input type="password" {...register("password", { required: true })} />
-                    {errors.password && <span>This field is required</span>}
+                    <input type="password" {...login("password", { required: true })} />
+                    {/* {errors.password && <span>This field is required</span>} */}
                     <input value='Войти' type="submit" />
                 </form>
                 <span>Если у вас еще не аккаунта, вы можете его создать -&nbsp;</span>
@@ -100,26 +102,26 @@ export default function Navbar() {
         <Modal open={registrationOpen} onClose={() => setRegistrationOpen(false)}>
             <div className={cn(s.box, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
                 <h1>Регистрация:</h1>
-                <form className={s.form} onSubmit={handleSubmit(onSubmitSignUp)}>
+                <form className={s.form} onSubmit={handleSubmitSignUp(onSubmitSignUp)}>
                     <label>Имя:</label>
-                    <input {...register("firstName", { required: true })} />
-                    {errors.firstName && <span>This field is required</span>}
+                    <input {...signup("firstName", { required: true })} />
+                    {/* {errors.firstName && <span>This field is required</span>} */}
 
                     <label>Фамилия:</label>
-                    <input {...register("lastName", { required: true })} />
-                    {errors.lastName && <span>This field is required</span>}
+                    <input {...signup("lastName", { required: true })} />
+                    {/* {errors.lastName && <span>This field is required</span>} */}
 
                     <label>Email:</label>
-                    <input {...register("email", { required: true })} />
-                    {errors.email && <span>This field is required</span>}
+                    <input {...signup("email", { required: true })} />
+                    {/* {errors.email && <span>This field is required</span>} */}
                     
                     <label>Пароль:</label>
-                    <input type="password" {...register("password", { required: true })} />
-                    {errors.password && <span>This field is required</span>}
+                    <input type="password" {...signup("password", { required: true })} />
+                    {/* {errors.password && <span>This field is required</span>} */}
 
                     <label>Повторите пароль:</label>
-                    <input type="password" {...register("password", { required: true })} />
-                    {errors.password && <span>This field is required</span>}
+                    <input type="password" {...signup("password", { required: true })} />
+                    {/* {errors.password && <span>This field is required</span>} */}
                     <input value='Создать аккаунт' type="submit" />
                 </form>
             </div>
