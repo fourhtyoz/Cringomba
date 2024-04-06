@@ -14,9 +14,10 @@ export default function Joke() {
     const darkMode = mode === 'dark'
     const handleClick = async () => {
         try {
-            const res: any = await httpServer.get('/')
+            const res: any = await httpServer.get('/api/get_joke')
+            console.log(res)
             if (res.status === 200) {
-                setJokeText(res.data.randomJoke[0].text)
+                setJokeText(res.data.joke[0].text)
                 const hash = localStorage.getItem('cringombaGeneratedJoke')
                 if (hash) {
                     let newValue = String(parseInt(hash) + 1)

@@ -23,7 +23,6 @@ export default function App() {
   // fullstack deploy
 
   const mode = useSelector(selectMode)
-  console.log(mode)
   const darkTheme = createTheme({
     palette: {
       mode: mode === 'dark' ? 'dark' : 'light',

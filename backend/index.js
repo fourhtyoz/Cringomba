@@ -22,6 +22,7 @@ connectToDB()
 
 // Routers
 const indexRouter = require('./routes/index')
+const apiRouter = require('./routes/api')
 
 const app = express()
 
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // URLs
 app.use('/', indexRouter)
+app.use('/api', apiRouter)
 
 // 404
 app.use((req, res, next) => {
