@@ -8,6 +8,7 @@ import alertify from 'alertifyjs';
 import 'alertifyjs/build/css/alertify.css';
 import { useSelector } from 'react-redux';
 import { selectMode } from '../stores/selectors/selectors';
+import cn from 'classnames';
 
 export default function ActionBar({text}:{text:any}) {
 
@@ -25,21 +26,12 @@ export default function ActionBar({text}:{text:any}) {
     }
 
     const mode = useSelector(selectMode)
-
-    if (mode) {
-        return (
-            <div className={s.containerDark}>
-            <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
-            <div onClick={handleCopy}><ContentCopyIcon fontSize='inherit' /></div>
-            <div onClick={handleLike}><ThumbUpIcon fontSize='inherit' /></div>
-        </div>
-        )
-    }
+    const darkMode = mode === 'dark'
     return (
-        <div className={s.container}>
-            <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
-            <div onClick={handleCopy}><ContentCopyIcon fontSize='inherit' /></div>
-            <div onClick={handleLike}><ThumbUpIcon fontSize='inherit' /></div>
-        </div>
+        <div className={cn(s.container, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
+        <div onClick={handleDislike}><ThumbDownAltIcon fontSize='inherit' /></div>
+        <div onClick={handleCopy}><ContentCopyIcon fontSize='inherit' /></div>
+        <div onClick={handleLike}><ThumbUpIcon fontSize='inherit' /></div>
+    </div>
     )
 }

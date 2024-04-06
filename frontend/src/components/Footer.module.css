@@ -8,8 +8,16 @@
     padding: 50px;
 }
 
-.container a {
+.darkMode {
+    color: #FAA50A;
+}
+
+.lightMode {
     color: lightblue;
+}
+
+.container .link {
+    /* color: lightblue; */
     font-weight: bold;
     transition: .3s linear;
     text-decoration: none;

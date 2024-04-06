@@ -13,8 +13,6 @@ export default function Joke() {
     const [jokeText, setJokeText] = useState('')
     const mode = useSelector(selectMode)
     const darkMode = mode === 'dark'
-
-
     const handleClick = async () => {
         try {
             const res: any = await axios.get('http://localhost:8000/')
