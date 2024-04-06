@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import Joke from '../Joke';
+import Navbar from '../Navbar';
 // import s from './App.module.css';
 
 export default function MainPage() {
@@ -20,11 +21,12 @@ export default function MainPage() {
   // fullstack deploy
 
   return (
-      <div className={''}>
+    <>
+        <Navbar />
         <Header />
         <Joke />
         <Footer />
-      </div>
+    </>
   );
 };
 

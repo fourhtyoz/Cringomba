@@ -8,31 +8,33 @@ import ProfilePage from "./components/pages/ProfilePage";
 import AboutPage from "./components/pages/AboutPage";
 import PageNotFound from "./components/pages/PageNotFound";
 
-export default function AllRoutes() {
-
+export default function RouterPaths() {
     const mode = useSelector(selectMode)
     const darkTheme = createTheme({
-    palette: {
-      mode: mode === 'dark' ? 'dark' : 'light',
-      primary: {
-        main: '#FFA500',
+      components: {
+        MuiSwitch: {
+          styleOverrides: {
+            track: {
+              backgroundColor: '#d3d3d3',
+            }
+          }
+        }
       },
-      secondary: {
-        main: '#131052',
-
-      },
-    },
-  });
+      palette: {
+        mode: mode === 'dark' ? 'dark' : 'light',
+        primary: { main: '#fAA50A'},
+      }
+    });
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='/profile' element={<ProfilePage />} />
-                <Route path='/about' element={<AboutPage />} />
-                <Route path='*' element={<PageNotFound />} />
-            </Routes>
+        <CssBaseline />
+          <Routes>
+              <Route path='/' element={<MainPage />} />
+              <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/about' element={<AboutPage />} />
+              <Route path='*' element={<PageNotFound />} />
+          </Routes>
         </ThemeProvider>
     )
 }

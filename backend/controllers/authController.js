@@ -43,7 +43,16 @@ exports.login = asyncHandler( async (req, res) => {
             const token = jwt.sign({ email }, JWT_SECRET);
             return res
               .status(200)
-              .json({ message: "User Logged in Sucessfully", token });
+              .json({ message: "User Logged in Successfully", 
+                user: {
+                  id: user._id, 
+                  firstName: user.firstName, 
+                  lastName: user.lastName, 
+                  email: user.email, 
+                  role: user.role, 
+                  created:user.created
+                }, 
+                token: token });
           }
     
           console.log(err);
