@@ -59,6 +59,7 @@ export default function Navbar() {
 
     const handleLogin = () => {
         setLoggingInOpen(true)
+        setRegistrationOpen(false)
     }
 
     const handleLogout = () => {
