@@ -1,12 +1,13 @@
 
 import React, { useState } from "react";
-import { Modal, Box, Switch } from "@mui/material";
+import { Modal, Switch } from "@mui/material";
 import { useForm } from "react-hook-form";
 import s from './Navbar.module.css'
 import { httpServer } from "../api/httpServer";
 import store from "../stores/store";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectMode, selectUser } from "../stores/selectors/selectors";
+import cn from 'classnames';
 
 export default function Navbar() {
     const [registrationOpen, setRegistrationOpen] = useState(false)
@@ -78,48 +79,50 @@ export default function Navbar() {
         {isLoggedIn && <button onClick={handleLogout}>Выход</button>}
 
         <Modal open={loggingInOpen} onClose={() => setLoggingInOpen(false)}>
-            <Box className={s.box}>
-            <h1>Авторизация:</h1>
-            <form className={s.form} onSubmit={handleSubmit(onSubmitLogin)}>
-                <label>Email:</label>
-                <input {...register("email", { required: true })} />
-                {errors.email && <span>This field is required</span>}
-                
-                <label>Пароль:</label>
-                <input type="password" {...register("password", { required: true })} />
-                {errors.password && <span>This field is required</span>}
-                <input value='Войти' type="submit" />
-            </form>
-            <span onClick={handleRegistrationClick}>Зарегистрироваться</span>
-            </Box>
+            <div className={cn(s.box, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
+                <h1>Авторизация:</h1>
+                <form className={s.form} onSubmit={handleSubmit(onSubmitLogin)}>
+                    <label>Email:</label>
+                    <input {...register("email", { required: true })} />
+                    {errors.email && <span>This field is required</span>}
+                    
+                    <label>Пароль:</label>
+                    <input type="password" {...register("password", { required: true })} />
+                    {errors.password && <span>This field is required</span>}
+                    <input value='Войти' type="submit" />
+                </form>
+                <span>Если у вас еще не аккаунта, вы можете его создать -&nbsp;</span>
+                <span className={cn(s.link, {[s.darkModeText]: darkMode, [s.lightModeText]: !darkMode})} 
+                onClick={handleRegistrationClick}>зарегистрироваться</span>
+            </div>
         </Modal>
 
         <Modal open={registrationOpen} onClose={() => setRegistrationOpen(false)}>
-            <Box className={s.box}>
-            <h1>Регистрация:</h1>
-            <form className={s.form} onSubmit={handleSubmit(onSubmitSignUp)}>
-                <label>Имя:</label>
-                <input {...register("firstName", { required: true })} />
-                {errors.firstName && <span>This field is required</span>}
+            <div className={cn(s.box, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
+                <h1>Регистрация:</h1>
+                <form className={s.form} onSubmit={handleSubmit(onSubmitSignUp)}>
+                    <label>Имя:</label>
+                    <input {...register("firstName", { required: true })} />
+                    {errors.firstName && <span>This field is required</span>}
 
-                <label>Фамилия:</label>
-                <input {...register("lastName", { required: true })} />
-                {errors.lastName && <span>This field is required</span>}
+                    <label>Фамилия:</label>
+                    <input {...register("lastName", { required: true })} />
+                    {errors.lastName && <span>This field is required</span>}
 
-                <label>Email:</label>
-                <input {...register("email", { required: true })} />
-                {errors.email && <span>This field is required</span>}
-                
-                <label>Пароль:</label>
-                <input type="password" {...register("password", { required: true })} />
-                {errors.password && <span>This field is required</span>}
+                    <label>Email:</label>
+                    <input {...register("email", { required: true })} />
+                    {errors.email && <span>This field is required</span>}
+                    
+                    <label>Пароль:</label>
+                    <input type="password" {...register("password", { required: true })} />
+                    {errors.password && <span>This field is required</span>}
 
-                <label>Повторите пароль:</label>
-                <input type="password" {...register("password", { required: true })} />
-                {errors.password && <span>This field is required</span>}
-                <input value='Создать аккаунт' type="submit" />
-            </form>
-            </Box>
+                    <label>Повторите пароль:</label>
+                    <input type="password" {...register("password", { required: true })} />
+                    {errors.password && <span>This field is required</span>}
+                    <input value='Создать аккаунт' type="submit" />
+                </form>
+            </div>
         </Modal>
 
         </div>

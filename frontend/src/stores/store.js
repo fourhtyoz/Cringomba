@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from 'redux-logger';
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
@@ -59,46 +58,18 @@ function rootReducer(state = initialState, action) {
                 }
             }
         default: 
-            return {
-                ...state,
-            }
+            return state
     }
 }
 
-function userReducer(state = initialState, action) {
-    switch (action.type) {
-        case 'user/login':
-            return {
-                ...state,
-                user: action.payload
-            }
-        case 'user/logout':
-            return {
-                ...state,
-                user: {}
-            }
-        default: 
-            return {
-                ...state,
-                user: {}
-            }
-    }
-} 
-
-const preloadedState = {}
 const persistedReducer = persistReducer(
     persistConfig,
     rootReducer
 )
 const store = configureStore({
     reducer: persistedReducer,
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
     devTools: process.env.NODE_ENV !== 'development',
-    preloadedState,
-    enhancers: (getDefaultEnhancers) =>
-    getDefaultEnhancers({
-      autoBatch: false,
-    })
 })
+
 export const persistor = persistStore(store)
 export default store;

@@ -30,10 +30,6 @@ export default function App() {
       primary: {
         main: '#FFA500',
       },
-      secondary: {
-        main: '#131052',
-
-      },
     },
   });
 
