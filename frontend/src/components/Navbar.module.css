@@ -8,6 +8,11 @@
     color: #ffffff;
 }
 
+.currentPath {
+    background-color: #FAA50A !important;
+    color: #000 !important;
+}
+
 .link {
     color: rgba(0, 0, 128, .5);
     cursor: pointer;
@@ -27,7 +32,8 @@
 }
 
 
-.wrapper button {
+.wrapper button,
+.wrapper a {
     background-color: transparent;
     border: none;
     padding: 5px 25px;
@@ -36,13 +42,18 @@
     border: 1px solid #383838;    
     color: #ffffff;
     transition: .3s linear;
+    text-decoration: none;
 }
 
 .wrapper button:hover {
     cursor: pointer;  
     border: 1px solid rgb(220, 220, 220);    
-
 }
+
+.wrapper a:hover {
+    border: 1px solid rgb(220, 220, 220);
+}
+
 
 .box {
     position: absolute;

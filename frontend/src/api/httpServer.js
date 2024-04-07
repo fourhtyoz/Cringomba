@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const httpServer = axios.create({
-    baseURL: 'https://backend-ejlb.onrender.com'
+    baseURL: 'http://localhost:8000'
 });
 
 httpServer.interceptors.request.use(

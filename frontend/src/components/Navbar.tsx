@@ -8,6 +8,7 @@ import store from "../stores/store";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectMode, selectUser } from "../stores/selectors/selectors";
 import cn from 'classnames';
+import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
     const [registrationOpen, setRegistrationOpen] = useState(false)
@@ -74,12 +75,17 @@ export default function Navbar() {
     const isLoggedIn = useSelector(selectIsLoggedIn)
     const mode = useSelector(selectMode)
     const darkMode = mode === 'dark'
+
+    const currentLocation = useLocation()
+
     return (
         <div className={s.wrapper}>
         {isLoggedIn ? `Добро пожаловать, ${user.firstName} ${user.lastName}` : <span>Привет, гость</span>}
         <Switch className={s.switcher} checked={darkMode} onChange={handleSwitch}/>
         {!isLoggedIn && <button onClick={handleLogin}>Вход</button>}
         {isLoggedIn && <button onClick={handleLogout}>Выход</button>}
+        <Link to={'/about'} className={currentLocation.pathname === '/about' && s.currentPath}>О нас</Link>
+        <Link to={'/'} className={currentLocation.pathname === '/' && s.currentPath}>Главная страница</Link>
 
         <Modal open={loggingInOpen} onClose={() => setLoggingInOpen(false)}>
             <div className={cn(s.box, {[s.darkMode]: darkMode, [s.lightMode]: !darkMode})}>
