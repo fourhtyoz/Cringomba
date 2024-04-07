@@ -54,7 +54,7 @@ export default function Joke() {
 
                 {jokeText && <ActionBar text={jokeText} />}
             </div>
-            <JokeButton darkMode={darkMode} onClick={handleClick}/>
+            <JokeButton onClick={handleClick}/>
         </>
     )
 }
