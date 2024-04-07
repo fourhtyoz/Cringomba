@@ -1,11 +1,7 @@
 import React from 'react';
-import Header from '../Header';
-import Footer from '../Footer';
-import Joke from '../Joke';
-import Navbar from '../Navbar';
-// import s from './App.module.css';
+import Joke from '../components/Joke';
 
-export default function MainPage() {
+export default function Main() {
   // TODO:
   // mobile
   // more jokes
@@ -22,10 +18,7 @@ export default function MainPage() {
 
   return (
     <>
-        <Navbar />
-        <Header />
         <Joke />
-        <Footer />
     </>
   );
 };

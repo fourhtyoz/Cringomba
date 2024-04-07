@@ -1,11 +1,13 @@
-import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import s from './App.module.css';
-import Joke from './components/Joke';
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { selectMode } from './stores/selectors/selectors';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import Layout from "./layouts/Layout";
+import Main from "./pages/Main";
+import About from "./pages/About";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
+import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
+import { useSelector } from "react-redux";
+import { selectMode } from "./stores/selectors/selectors";
+
 
 export default function App() {
   // TODO:
@@ -24,22 +26,34 @@ export default function App() {
 
   const mode = useSelector(selectMode)
   const darkTheme = createTheme({
+    components: {
+      MuiSwitch: {
+        styleOverrides: {
+          track: {
+            backgroundColor: '#d3d3d3',
+          }
+        }
+      }
+    },
     palette: {
       mode: mode === 'dark' ? 'dark' : 'light',
-      primary: {
-        main: '#FFA500',
-      },
-    },
+      primary: { main: '#fAA50A'},
+    }
   });
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <div className={s.wrapper}>
-        <Header />
-        <Joke />
-        <Footer />
-      </div>
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Main />} />
+          <Route path='about' element={<About />} />
+          <Route path='profile' element={<Profile />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };
