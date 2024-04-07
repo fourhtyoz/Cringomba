@@ -1,5 +1,6 @@
 services:
   - type: web
+    plan: free
     env: node
     name: backend
     repo: https://github.com/fourhtyoz/Cringomba.git
