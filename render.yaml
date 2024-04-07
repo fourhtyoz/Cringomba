@@ -7,7 +7,7 @@ services:
     buildFilter:
       paths:
         - backend/**
-    startCommand: cd backend; npm run dev
+    startCommand: cd backend; npm run build
 
   - type: web
     env: static
