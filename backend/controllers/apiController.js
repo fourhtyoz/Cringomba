@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler')
 
-// Models
 const Joke = require('../models/joke');
 
 exports.get_joke = asyncHandler(async (req, res, next) => {
