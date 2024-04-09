@@ -16,7 +16,7 @@ emailQueue.process(async (job) => {
         }
     });
 
-    let message = {
+    const message = {
         from: process.env.SMTP_FROM,
         to: to,
         subject: subject,
